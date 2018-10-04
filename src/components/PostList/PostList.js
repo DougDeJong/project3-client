@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 // import AddProject from './AddProject';
 
 class PostList extends Component {
-  constructor(){
-      super();
-      this.state = { listOfProjects: [] };
+  constructor(props){
+      super(props);
+      this.state = { listOfPosts: [] };
   }
 
   getAllPosts = () =>{
