@@ -46,4 +46,4 @@ class PostList extends Component {
   }
 }
 
-export default ProjectList;
+export default PostList;
