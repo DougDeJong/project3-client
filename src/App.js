@@ -5,13 +5,13 @@ import PostList from "./components/PostList/PostList";
 import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
 import { Editor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import "./App.css";
 import AuthService from "./components/Auth/auth-service";
 import PostMaker from "./components/PostMaker/PostMaker";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
 class App extends Component {
   constructor(props){
   super(props)
@@ -51,6 +51,8 @@ class App extends Component {
   };
 
   render() {
+    this.fetchUser();
+
     return (
       <div className="App">
 
