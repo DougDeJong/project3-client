@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -24,6 +26,7 @@
 
 .editor-row{
   justify-content: space-around;
+  padding: 2vw;
 }
 
 .text-writer{
@@ -43,3 +46,24 @@
 .navlist{
   flex-direction: row;
 }
+
+.tideLogo{
+  height: 6vw;
+}
+
+.DraftEditor-root{
+  background: white;
+}
+
+.navbar {
+  margin-bottom: 2vw;
+}
+
+/* .buttonRound{
+  border-radius: 10px;
+  background-image: linear-gradient(purple, blue, white)
+}
+
+.buttonRound:hover{
+  background-image: linear-gradient(white, blue, purple);
+} */

@@ -11,6 +11,7 @@ import AuthService from "./components/Auth/auth-service";
 import PostMaker from "./components/PostMaker/PostMaker";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
+import NewPost from "./components/NewPost/NewPost";
 
 class App extends Component {
   constructor(props){
@@ -57,17 +58,13 @@ class App extends Component {
       <div className="App">
 
         <Navbar setTheUserInTheAppComponent={this.logMeIn} userInSession={this.state.loggedInUser} />
-        <div class="container-fluid">
-        <div class="row editor-row">
-        <div class="col-8 text-writer">
-    <PostMaker onEditorStateChange={this.onEditorStateChange} />
-        
-        </div></div></div>
+       
 
         <Switch>
         <Route exact path="/" render={() => <Login  {...this.props} setTheUserInTheAppComponent={this.logMeIn}/>}/>
         <Route exact path='/signup' render={() => <Signup  {...this.props} setTheUserInTheAppComponent={this.logMeIn}/>}/>
           <Route exact path="/posts" component={PostList} />
+          <Route exact path="/newpost" component={NewPost} />
         </Switch>
       </div>
     );

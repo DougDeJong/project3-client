@@ -40,9 +40,15 @@ class PostMaker extends React.Component {
   render() {
     return (
       <div>
-        <div class="container-fluid">
-        <div class="row editor-row">
-        <div class="col-6">
+        <div className="container-fluid">
+        <div className="row editor-row">
+        <div className="input-group input-group-lg col-4">
+  <div className="input-group-prepend">
+    <span className="input-group-text" id="inputGroup-sizing-lg">Title</span>
+  </div>
+  <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"/>
+</div>
+        <div className="col-6">
         <Editor
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
