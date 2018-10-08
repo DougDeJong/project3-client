@@ -1,28 +1,29 @@
+
 // auth/Signup.js
 
 import React, { Component } from 'react';
 import AuthService from '../Auth/auth-service';
 import {Link} from 'react-router-dom' 
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props){
     super(props);
     this.state = { username: '', password: '' };
     this.service = new AuthService();
   }
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
+  handleFormSubmit = (e) => {
+    e.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
   
-    this.service.login(username, password)
-    .then( response => {
+    this.service.signup(username, password)
+    .then( theUserObject => {
         this.setState({
             username: "", 
             password: "",
         });
-        this.props.setTheUserInTheAppComponent(response)
+        this.props.setTheUserInTheAppComponent(theUserObject)
     })
     .catch( error => console.log(error) )
   }
@@ -43,15 +44,18 @@ class Login extends Component {
           <label>Password:</label>
           <input name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           
-          <input type="submit" value="Login" />
+          <input type="submit" value="Signup" />
         </form>
   
-        <p>Don't have an account? 
-            <Link to={"/signup"}> Signup</Link>
+        <p>Already have account? 
+            <Link to={"/"}> Login</Link>
         </p>
   
       </div>
     )
   }
+
+
 }
-export default Login;
+
+export default Signup;
