@@ -50,7 +50,7 @@ class PostMaker extends React.Component {
     const contentState = convertFromRaw(this.state.editorState);
     console.log(contentState)
     const content = stateToHTML(contentState);
-    axios.post("http://localhost:5000/api/posts", {title, blerb, content, contentState, user} )
+    axios.post(process.env.REACT_APP_API_URL+"/posts", {title, blerb, content, contentState, user} )
     .then( () => {
       return (
         <Redirect to='/PostList' />
