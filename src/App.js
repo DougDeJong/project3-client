@@ -64,7 +64,7 @@ class App extends Component {
         <Route exact path="/" render={() => <Login  {...this.props} setTheUserInTheAppComponent={this.logMeIn}/>}/>
         <Route exact path='/signup' render={() => <Signup  {...this.props} setTheUserInTheAppComponent={this.logMeIn}/>}/>
           <Route exact path="/posts" component={PostList} />
-          <Route exact path="/newpost" component={PostMaker} />
+          <Route exact path="/newpost" render={() => <PostMaker {...this.props} userInSession={this.state.loggedInUser}/>} />
         </Switch>
       </div>
     );
