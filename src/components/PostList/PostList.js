@@ -11,7 +11,7 @@ class PostList extends Component {
   }
 
   getAllPosts = () =>{
-    axios.get(`http://localhost:5000/api/posts`)
+    axios.get(process.env.REACT_APP_API_URL+'/posts')
     .then(responseFromApi => {
       this.setState({
         listOfPosts: responseFromApi.data
