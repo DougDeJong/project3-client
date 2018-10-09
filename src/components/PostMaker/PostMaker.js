@@ -42,13 +42,22 @@ class PostMaker extends React.Component {
       <div>
         <div className="container-fluid">
         <div className="row editor-row">
-        <div className="input-group input-group-lg col-4">
-  <div className="input-group-prepend">
-    <span className="input-group-text" id="inputGroup-sizing-lg">Title</span>
+        <div className="col-4 text-writer">
+        <div className="input-group input-group-lg">
+  <div className="input-group-prepend colAligner">
+    <span className="input-group-text inputTag" id="inputGroup-sizing-lg">Title</span>
   </div>
-  <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"/>
+  <input type="text" className="form-control colAligner" aria-label="Large" aria-describedby="inputGroup-sizing-sm"/>
+  <div className="input-group colAligner">
+  <div className="input-group-prepend">
+    <span className="input-group-text inputTag">Blerb</span>
+  </div>
+  <textarea className="form-control" aria-label="With textarea"></textarea>
 </div>
-        <div className="col-6">
+        </div>
+<button type="button" className="btn btn-dark darkButton">Submit Post!</button>
+        </div>
+        <div className="col-6 text-writer">
         <Editor
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
@@ -56,7 +65,7 @@ class PostMaker extends React.Component {
           </div>
         
         </div>
-        </div>
+      </div>
       </div>
     );
   }

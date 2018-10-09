@@ -13,6 +13,7 @@
 .public-DraftEditor-content {
   height: inherit;
   text-align: initial;
+  padding: 0 .5vw;
 }
 .public-DraftEditor-content[contenteditable="true"] {
   -webkit-user-modify: read-write-plaintext-only;
