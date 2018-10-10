@@ -24,6 +24,10 @@ class PostMaker extends React.Component {
   componentWillMount() {
     this.setState({ loggedInUser: this.props.userInSession})
   }
+  componentWillReceiveProps(nextProps){
+    this.setState({ loggedInUser: nextProps.userInSession})
+
+  }
 
   handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -46,14 +50,15 @@ class PostMaker extends React.Component {
     event.preventDefault();
     const title = this.state.title;
     const blerb = this.state.blerb;
-    const user = this.state.loggedInUser;
-    const contentState = convertFromRaw(this.state.editorState);
-    console.log(contentState)
-    const content = stateToHTML(contentState);
-    axios.post(process.env.REACT_APP_API_URL+"/posts", {title, blerb, content, contentState, user} )
+    // const transContentState = convertFromRaw(this.state.editorState);
+    const transContentState = convertFromRaw(this.state.editorState);
+    var rawData = convertToRaw(this.state.editorState)
+    const contentState = rawData;
+    const content = stateToHTML(transContentState);
+    axios.post(process.env.REACT_APP_BASE_URL+"/posts", {title, blerb, content, contentState}, {withCredentials: true})
     .then( () => {
       return (
-        <Redirect to='/PostList' />
+        this.props.history.push('/posts')
       ) 
   })
   .catch( error => console.log(error) )
@@ -79,7 +84,7 @@ class PostMaker extends React.Component {
   <textarea className="form-control" name="blerb" value={this.state.blerb} onChange={ e => this.handleChange(e)} aria-label="With textarea"></textarea>
 </div>
         </div>
-<Link to={'/'} onClick={this.handlePostSubmit}><button type="button" className="btn btn-dark darkButton">Submit Post!</button></Link>
+<button type="button" className="btn btn-dark darkButton" onClick={this.handlePostSubmit}>Submit Post!</button>
         </div>
         <div className="col-6 text-writer">
         <Editor

@@ -31,7 +31,8 @@ class Navbar extends Component {
         <nav className="navbar navbar-dark bg-dark">
         <img className="navbar-brand tideLogo" src={Logo} alt="logo"/>
           <ul className= "navbar-nav navlist">
-            <li className="nav-item active greeter">Welcome, {this.state.loggedInUser.username}</li>
+            <li className="nav-item active greeter">
+            <Link to="/userview">Welcome, {this.state.loggedInUser.username}</Link> </li>
             </ul>
             <ul className="navbar-nav navlist ml-auto">
             <li className="nav-item active">
