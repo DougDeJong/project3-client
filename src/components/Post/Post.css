@@ -1,0 +1,10 @@
+.postContainer{
+  margin: 0 auto;
+  width: 58vw;
+  min-height: 40vw;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5vw;
+  box-shadow: 0 6vw 12vw rgba(0,0,0,0.19), 0 6vw 12vw rgba(0,0,0,0.23);
+  border: 3px solid #424242;
+}
