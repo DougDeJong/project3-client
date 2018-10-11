@@ -15,6 +15,7 @@ import NewPost from "./components/NewPost/NewPost";
 import Userview from "./components/Userview/Userview";
 import EditPost from "./components/EditPost/EditPost";
 import Post from "./components/Post/Post";
+import EditComment from "./components/EditComment/EditComment";
 
 class App extends Component {
   constructor(props) {
@@ -121,6 +122,11 @@ class App extends Component {
           <Route exact path="/posts/:id" render={() => (
             <Post {...this.props}
             userInSession={this.state.loggedInUser}
+            />
+          )}
+          />
+          <Route exact path="/editcomment/:id" render={() => (
+            <EditComment {...this.props} userInSession={this.state.loggedInUser}
             />
           )}
           />

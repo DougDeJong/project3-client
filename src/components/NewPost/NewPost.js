@@ -1,4 +1,4 @@
-import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
+import { EditorState } from 'draft-js';
 import React, { Component } from "react";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import PostMaker from '../PostMaker/PostMaker';

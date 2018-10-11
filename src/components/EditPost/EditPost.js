@@ -1,9 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./Draft.css";
 import {
   EditorState,
-  convertFromRaw,
   convertFromHTML,
   convertToRaw,
   RichUtils,
@@ -11,10 +9,9 @@ import {
 } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { Redirect, Link, Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { stateToHTML } from "draft-js-export-html";
 import axios from "axios";
-import htmlToDraft from "html-to-draftjs";
 
 class EditPost extends React.Component {
   constructor(props) {

@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 class Userview extends Component {
   constructor(props){
       super(props);
-      this.state = { listOfPosts: [] , loggedInUser: null };
+      this.state = { listOfPosts: [] , loggedInUser: null, listOfComments: [] };
   }
 
   getAllPosts = () =>{
     axios.get(process.env.REACT_APP_BASE_URL+'/posts', {withCredentials: true})
     .then(responseFromApi => {
       const userPosts = responseFromApi.data;
-     const result = userPosts.filter(thePosts => (thePosts.author._id == this.state.loggedInUser._id));
+     const result = userPosts.filter(thePosts => (thePosts.author._id === this.state.loggedInUser._id));
       this.setState({
         listOfPosts: result
       })
@@ -22,10 +22,16 @@ class Userview extends Component {
   }
 
   getAllComments = () =>{
-    axios.get(process.env.REACT_APP_BASE_URL+'/posts')
+    axios.get(process.env.REACT_APP_BASE_URL+'/comments', {withCredentials: true})
     .then(responseFromApi => {
+      const userComments = responseFromApi.data;
+      console.log("COMMENT COMMENTS COMMENTS")
+      console.log(userComments)
+      const commentResult = userComments.filter(theComments => (theComments.author._id === this.state.loggedInUser._id));
+      console.log("filtered filtered filtered")
+      console.log(commentResult)
       this.setState({
-        listOfPosts: responseFromApi.data
+        listOfComments: commentResult
       })
     })
   }
@@ -40,7 +46,7 @@ class Userview extends Component {
   }
 
   deleteProject = (theId) => {
-    axios.delete(`http://localhost:5000/api/posts/${theId}`)
+    axios.delete(process.env.REACT_APP_BASE_URL + `/posts/${theId}`)
     .then( responseFromApi =>{
         this.getAllPosts();        
     })
@@ -49,11 +55,23 @@ class Userview extends Component {
     })
   }
 
+  deleteComment = (theCommentId) => {
+    console.log('clicked')
+    axios.delete(process.env.REACT_APP_BASE_URL + `/comments/${theCommentId}`)
+    .then( responseFromApi =>{
+      this.getAllComments();
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
 
 
 
   componentDidMount() {
     this.getAllPosts();
+    this.getAllComments();
     console.log('______)))))______');
     console.log(this.state.listOfPosts);
   }
@@ -75,8 +93,17 @@ class Userview extends Component {
             )})
           }
         </div>
-        <div style={{width: '40%', float:"right"}}>
-            {/* <AddProject getData={() => this.getAllProjects()}/> */}
+        <div style={{width: '60%', float:"left"}}>
+          { this.state.listOfComments.map((comment, index) => {
+            return (
+              <div key={comment._id}>
+                  <p>{comment.content}</p>
+                <button onClick={() => this.deleteComment(comment._id)}>Delete Comment</button>
+                <Link to={`/editcomment/${comment._id}`}><button className ="btn btn-info buttonRound">Edit This Comment</button></Link>
+
+              </div>
+            )})
+          }
         </div>
       </div>
     )

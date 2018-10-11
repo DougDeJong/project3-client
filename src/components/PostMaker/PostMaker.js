@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './Draft.css'
-import { EditorState, convertFromRaw, convertToRaw, RichUtils, getCurrentContent } from 'draft-js';
+import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
 import { Editor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Redirect, Link, Route, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {stateToHTML} from 'draft-js-export-html';
 import axios from 'axios'
 
