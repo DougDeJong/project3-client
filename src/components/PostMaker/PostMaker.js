@@ -49,12 +49,9 @@ class PostMaker extends React.Component {
     event.preventDefault();
     const title = this.state.title;
     const blerb = this.state.blerb;
-    // const transContentState = convertFromRaw(this.state.editorState);
     const transContentState = convertFromRaw(this.state.editorState);
-    var rawData = convertToRaw(this.state.editorState.getCurrentContent())
-    const contentState = rawData;
     const content = stateToHTML(transContentState);
-    axios.post(process.env.REACT_APP_BASE_URL+"/posts", {title, blerb, content, contentState}, {withCredentials: true})
+    axios.post(process.env.REACT_APP_BASE_URL+"/posts", {title, blerb, content }, {withCredentials: true})
     .then( () => {
       return (
         this.props.history.push('/posts')
