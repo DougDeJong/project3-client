@@ -16,10 +16,10 @@ import { stateToHTML } from "draft-js-export-html";
 import axios from "axios";
 import htmlToDraft from "html-to-draftjs";
 
-class PostMaker extends React.Component {
+class EditPost extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loggedInUser: null, title: "", blerb: "" };
+    this.state = { loggedInUser: null, title: "", blerb: "", editorState: EditorState.createEmpty() };
     this.onChange = editorState => {
       this.setState({ editorState });
     };
@@ -77,11 +77,13 @@ class PostMaker extends React.Component {
 
   handleEditSubmit = event => {
     const { params } = this.props.match;
+    event.preventDefault();
     const title = this.state.title;
     const blerb = this.state.blerb;
-    const contentState = convertFromRaw(this.state.editorState);
-    console.log(contentState);
-    const content = stateToHTML(contentState);
+    // const transContentState = convertFromRaw(this.state.editorState);
+    const rawData = convertToRaw(this.state.editorState.getCurrentContent());
+    const contentState = rawData;
+    const content = stateToHTML(this.state.editorState.getCurrentContent());
     axios.put(process.env.REACT_APP_BASE_URL + `/posts/${params.id}`, { title, blerb, content, contentState }, {withCredentials: true})
     .then(() => {
       return this.props.history.push("/userview");
@@ -91,25 +93,25 @@ class PostMaker extends React.Component {
     }
   
 
-  handlePostSubmit = event => {
-    console.log("clicked!");
-    event.preventDefault();
-    const title = this.state.title;
-    const blerb = this.state.blerb;
-    const contentState = convertFromRaw(this.state.editorState);
-    console.log(contentState);
-    const content = stateToHTML(contentState);
-    axios
-      .post(
-        process.env.REACT_APP_BASE_URL + "/posts",
-        { title, blerb, content, contentState },
-        { withCredentials: true }
-      )
-      .then(() => {
-        return this.props.history.push("/posts");
-      })
-      .catch(error => console.log(error));
-  };
+  // handlePostSubmit = event => {
+  //   console.log("clicked!");
+  //   event.preventDefault();
+  //   const title = this.state.title;
+  //   const blerb = this.state.blerb;
+  //   const contentState = convertFromRaw(this.state.editorState);
+  //   console.log(contentState);
+  //   const content = stateToHTML(contentState);
+  //   axios
+  //     .post(
+  //       process.env.REACT_APP_BASE_URL + "/posts",
+  //       { title, blerb, content, contentState },
+  //       { withCredentials: true }
+  //     )
+  //     .then(() => {
+  //       return this.props.history.push("/posts");
+  //     })
+  //     .catch(error => console.log(error));
+  // };
 
   render() {
     return (
@@ -170,4 +172,4 @@ class PostMaker extends React.Component {
     );
   }
 }
-export default withRouter(PostMaker);
+export default withRouter(EditPost);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 // import AddProject from './AddProject';
 
@@ -33,7 +34,9 @@ class PostList extends Component {
                 <Link to={`/posts/${post._id}`}>
                   <h3>{post.title}</h3>
                 </Link>
-                <p style={{maxWidth: '400px'}} >{post.content} </p>
+                <p style={{maxWidth: '400px'}} >{post.blerb} </p>
+                <div>{post.content}</div>
+                <div> { ReactHtmlParser(post.content) }</div>
               </div>
             )})
           }

@@ -14,6 +14,7 @@ import Signup from "./components/Signup/Signup";
 import NewPost from "./components/NewPost/NewPost";
 import Userview from "./components/Userview/Userview";
 import EditPost from "./components/EditPost/EditPost";
+import Post from "./components/Post/Post";
 
 class App extends Component {
   constructor(props) {
@@ -116,6 +117,12 @@ class App extends Component {
                 userInSession={this.state.loggedInUser}
               />
             )}
+          />
+          <Route exact path="/posts/:id" render={() => (
+            <Post {...this.props}
+            userInSession={this.state.loggedInUser}
+            />
+          )}
           />
         </Switch>
       </div>

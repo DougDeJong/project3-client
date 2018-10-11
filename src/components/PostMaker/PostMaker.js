@@ -52,7 +52,7 @@ class PostMaker extends React.Component {
     const blerb = this.state.blerb;
     // const transContentState = convertFromRaw(this.state.editorState);
     const transContentState = convertFromRaw(this.state.editorState);
-    var rawData = convertToRaw(this.state.editorState)
+    var rawData = convertToRaw(this.state.editorState.getCurrentContent())
     const contentState = rawData;
     const content = stateToHTML(transContentState);
     axios.post(process.env.REACT_APP_BASE_URL+"/posts", {title, blerb, content, contentState}, {withCredentials: true})
