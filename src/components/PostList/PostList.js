@@ -35,7 +35,7 @@ class PostList extends Component {
                   <h3>{post.title}</h3>
                 </Link>
                 <p style={{maxWidth: '400px'}} >{post.blerb} </p>
-                <div>{post.content}</div>
+
                 <div> { ReactHtmlParser(post.content) }</div>
               </div>
             )})
