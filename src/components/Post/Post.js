@@ -16,12 +16,11 @@ class Post extends Component {
       theComments: [],
       showDiv: false,
       newComment: "",
+      loggedInUser: null
     };
-      this.onChange = (editorState) => {
-      
-        this.setState({editorState})
-  
-      };
+    this.onChange = editorState => {
+      this.setState({ editorState });
+    };
   }
 
   componentWillMount() {
@@ -41,13 +40,10 @@ class Post extends Component {
     axios
       .get(process.env.REACT_APP_BASE_URL + `/posts/${params.id}`)
       .then(responseFromApi => {
-        console.log(responseFromApi.data);
         this.setState({
-          thePost: responseFromApi.data, 
+          thePost: responseFromApi.data,
           theComments: responseFromApi.data.comments
         });
-        console.log("%%%%%%%%%%$$$$$$$$$%%%%%%%%%%%");
-        console.log(this.state.thePost.comments);
       });
   }
 
@@ -57,28 +53,31 @@ class Post extends Component {
     });
   }
 
-  handleChange = (event) => {  
-    const {name, value} = event.target;
+  handleChange = event => {
+    const { name, value } = event.target;
 
-    this.setState({[name]: value});
-}
+    this.setState({ [name]: value });
+  };
 
-handleCommentSubmit = (event) => {
-  console.log('clicked!')
-  event.preventDefault();
-  const content = this.state.newComment;
-  const thePost = this.state.thePost
-  axios.post(process.env.REACT_APP_BASE_URL+"/posts", { content, thePost }, {withCredentials: true})
-  .then( () => {
-    return (
-      this.props.history.push('/posts')
-    ) 
-})
-.catch( error => console.log(error) )
-}
+  handleCommentSubmit = event => {
+    console.log("clicked!");
+    event.preventDefault();
+    const content = this.state.newComment;
+    const post = this.state.thePost;
+    axios
+      .post(
+        process.env.REACT_APP_BASE_URL + "/comments",
+        { content, post },
+        { withCredentials: true }
+      )
+      .then(() => {
+        this.getAllComments();
+      })
+      .catch(error => console.log(error));
+  };
 
   render() {
-    const { showDiv } = this.state
+    const { showDiv } = this.state;
     return (
       <div>
         <div className="postContainer">
@@ -95,23 +94,34 @@ handleCommentSubmit = (event) => {
               </div>
             );
           })}
-           <div>
-                <button onClick={() => this.toggleHidden()}>
-                    { showDiv ? 'Hide' : 'Add Comment' }
+          <div>
+            <button onClick={() => this.toggleHidden()}>
+              {showDiv ? "Hide" : "Add Comment"}
+            </button>
+            {showDiv && (
+              <div id="the div you want to show and hide">
+                <div className="input-group colAligner">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text inputTag">Comment:</span>
+                  </div>
+                  <textarea
+                    className="form-control"
+                    name="newComment"
+                    value={this.state.newComment}
+                    onChange={e => this.handleChange(e)}
+                    aria-label="With textarea"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-dark darkButton"
+                  onClick={e => this.handleCommentSubmit(e)}
+                >
+                  Submit Comment
                 </button>
-                { showDiv && (
-                    <div id="the div you want to show and hide">
-                     <div className="input-group colAligner">
-  <div className="input-group-prepend">
-    <span className="input-group-text inputTag">Comment:</span>
-  </div>
-  <textarea className="form-control" name="newComment" value={this.state.newComment} onChange={ e => this.handleChange(e)} aria-label="With textarea"></textarea>
-</div>
-
-
-</div>
-                )}
-            </div>  
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
