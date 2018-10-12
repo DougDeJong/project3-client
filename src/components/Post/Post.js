@@ -35,7 +35,7 @@ class Post extends Component {
   }
 
   getAllComments() {
-    console.log(this.props);
+
     const { params } = this.props.match;
     axios
       .get(process.env.REACT_APP_BASE_URL + `/posts/${params.id}`)
@@ -88,14 +88,14 @@ class Post extends Component {
         <div>
           {this.state.theComments.map((comment, index) => {
             return (
-              <div key={comment._id}>
+              <div className="commentBox" key={comment._id}>
                 <h3>{comment.author.username}</h3>
                 <p style={{ maxWidth: "400px" }}>{comment.content} </p>
               </div>
             );
           })}
           <div>
-            <button onClick={() => this.toggleHidden()}>
+            <button className="btn btn-dark btn-success displayButton" onClick={() => this.toggleHidden()}>
               {showDiv ? "Hide" : "Add Comment"}
             </button>
             {showDiv && (

@@ -1,15 +1,84 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0 0 5vw 0;
+  padding: 0 0 5vw 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to right, #89f7fe, #66a6ff)
+  background-image: linear-gradient(to right, #89f7fe, #66a6ff);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+.postCard{
+  background: #424242;
+  border-radius: 10px;
+  color: white;
+  margin: auto;
+  box-shadow: 0 6vw 12vw rgba(0,0,0,0.19), 0 6vw 12vw rgba(0,0,0,0.23);
+  border: 4px solid  #89f7fe;
+  margin-top: 2vw;
+  justify-content: space-around;
+}
+
+.postCard a {
+  padding-left: 1vw;
+  padding-top: 1vw;
+}
+
+.postList{
+  justify-content: space-around;
+  align-items: center;
+}
+
+.postTitle{
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+.postCard span{
+  padding-left: 4vw;
+}
+
+.postUser {
+  display: block;
+  margin-left: 4vw;
+}
+
+.postInfo h5 {
+  font-size: 1.2vw;
+}
+
+.postBlerb {
+  margin-top: 2vw;
+}
+
+.commentBox {
+  background: white;
+  border: 1px solid black;
+  width: 20vw;
+  margin-left: 29vw;
+  margin-top: 1vw;
+  box-shadow: 0 6vw 12vw rgba(0,0,0,0.19), 0 6vw 12vw rgba(0,0,0,0.23);
+
+}
+
+.commentBox h3{
+  font-size: 1.2vw;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.commentBox p{
+  margin-top: 1.5vw;
+}
+
+.displayButton {
+  margin-top: 1vw;
 }

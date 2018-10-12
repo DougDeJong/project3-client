@@ -78,8 +78,10 @@ class Userview extends Component {
 
   render(){
     return(
-      <div>
-        <div style={{width: '60%', float:"left"}}>
+      <div className="container-fluid">
+      <div className="row">
+        <div className="postCard col-4" >
+        <h4>Your Posts</h4>
           { this.state.listOfPosts.map((post, index) => {
             return (
               <div key={post._id}>
@@ -93,7 +95,8 @@ class Userview extends Component {
             )})
           }
         </div>
-        <div style={{width: '60%', float:"left"}}>
+        <div className="postCard col-4">
+        <h4>Your comments</h4>
           { this.state.listOfComments.map((comment, index) => {
             return (
               <div key={comment._id}>
@@ -105,6 +108,7 @@ class Userview extends Component {
             )})
           }
         </div>
+      </div>
       </div>
     )
   }

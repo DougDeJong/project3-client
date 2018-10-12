@@ -27,16 +27,19 @@ class PostList extends Component {
   render(){
     return(
       <div>
-        <div style={{width: '60%', float:"left"}}>
+        <div className="postList" >
           { this.state.listOfPosts.map((post, index) => {
             return (
-              <div key={post._id}>
-                <Link to={`/posts/${post._id}`}>
-                  <h3>{post.title}</h3>
+              <div className='postCard col-6' key={post._id}>
+              <div className="row">
+              <div className='postInfo col-4'>
+                <Link to={`/posts/${post._id}` } style={{ textDecoration: 'none', color: 'white', float: "left"}}>
+                  <h3 className="postTitle">{post.title}</h3>
                 </Link>
-                <p style={{maxWidth: '400px'}} >{post.blerb} </p>
-
-                <div> { ReactHtmlParser(post.content) }</div>
+                <h5 className="postUser"> by {post.author.username} </h5>
+               </div>
+                <p className="postBlerb col-4" >{post.blerb} </p>
+              </div>
               </div>
             )})
           }
