@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from '../Auth/auth-service';
 import {Link} from 'react-router-dom';
+import TopHook from '../TopHook/TopHook'
 
 class LandPage extends Component {
   constructor(props){
@@ -13,6 +14,7 @@ class LandPage extends Component {
   render(){
     return(
       <div>
+        <TopHook/>
 
       </div>
     )
