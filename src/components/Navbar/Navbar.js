@@ -36,6 +36,9 @@ class Navbar extends Component {
             </ul>
             <ul className="navbar-nav navlist ml-auto">
             <li className="nav-item active">
+            <Link className="nav-item active mr-sm-2" to="/userview" style={{ textDecoration: 'none' }}><button className = "btn btn-info buttonRound">My Account</button></Link>
+            </li>
+            <li className="nav-item active">
             <Link className="nav-item active mr-sm-2" to="/posts" style={{ textDecoration: 'none' }}><button className ="btn btn-info buttonRound">Posts</button></Link>
             </li>
             <li className="nav-item active">
